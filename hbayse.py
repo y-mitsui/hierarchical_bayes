@@ -3,6 +3,7 @@ import numpy
 import pystan
 import random
 import pandas as pd
+import matplotlib.pyplot as plt
 
 num_sample = 200
 num_category = 20
@@ -20,7 +21,7 @@ for i in range(num_sample-len(sample)):
     sample.append(random.randint(1, num_category))
 
 training_data = dict(N=num_sample,M=num_category, Y=sample)
-fit = pystan.stan(file='hbayes.stan', data=training_data, iter=10000, chains=1)
+fit = pystan.stan(file='hbayse.stan', data=training_data, iter=10000, chains=1)
 print "------- hierarchical bayse estimate ------------"
 print fit
 # get posterior's mean
@@ -34,6 +35,6 @@ print prob.sort_index()
 print numpy.std(prob)
 
 # show posterior's
-fit.plot().show()
-
+fit.plot()
+plt.show()
 
