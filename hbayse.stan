@@ -9,9 +9,9 @@ parameters {
 }
 
 model {
-        sigma ~ normal(0.05, 100);
+        sigma ~ normal(1./M, 100);
         for (i in 1:M) {
-            p[i] ~ normal(0.05, sigma);
+            p[i] ~ normal(1./M, sigma);
         }
         for (j in 1:N) {
             Y[j] ~ categorical(p);
